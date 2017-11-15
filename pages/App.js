@@ -172,7 +172,7 @@ type AppState = {
   volume: number,
 };
 
-export default class extends PureComponent<null, AppState> {
+export default class extends PureComponent<*, AppState> {
   state = {
     volume: 0.7,
   };

@@ -5,12 +5,13 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   text-align: center;
+  padding-top: 25px;
 `;
 
 const Label = styled.div`
   font-size: 12px;
   font-weight: 600;
-  color: #676767;
+  color: #fff;
 `;
 
 type VolumeProps = {
@@ -21,7 +22,7 @@ type VolumeProps = {
 const Volume = ({ volume, changeVolume }: VolumeProps) => (
   <Container>
     <Slider
-      style={{ width: '10%', marginLeft: '45%' }}
+      style={{ width: '10%', marginLeft: '45%', height: 40 }}
       defaultValue={volume}
       value={volume}
       onChange={changeVolume}
