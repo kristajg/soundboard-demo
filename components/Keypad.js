@@ -32,7 +32,7 @@ const Key = styled.div`
   border-radius: 6px;
   margin-right: 25px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  animation: ${props => props.animate ? `${playAnimation(props)} .3s linear` : 0}
+  animation: ${props => props.animate ? `${playAnimation(props)} .2s linear` : 0}
 `;
 
 const Label = styled.div`
@@ -111,7 +111,7 @@ export default class Keypad extends PureComponent<KeypadProps, KeypadState> {
       // Wait for animation to complete before closing
       setTimeout(() => {
         this.setState({ animate: false });
-      }, 500);
+      }, 200);
 
       const audio = document.getElementById(soundPath);
       if (audio instanceof HTMLAudioElement) {

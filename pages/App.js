@@ -39,7 +39,7 @@ const MusicContainer = styled.div`
 `;
 
 const KeyboardRow = styled.div`
-  height: 90px;
+  height: 100px;
 `;
 
 // Row one: loops
