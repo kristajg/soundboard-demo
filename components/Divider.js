@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 
@@ -22,7 +23,11 @@ const Line = styled.div`
   background-color: #676767;
 `;
 
-const Divider = ({ label, isGreen }) => (
+type Props = {
+  label: string,
+};
+
+const Divider = ({ label }: Props) => (
   <Container>
     <Label>{label}</Label>
     <Line />

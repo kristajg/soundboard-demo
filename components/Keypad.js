@@ -1,3 +1,4 @@
+// @flow
 import React, { PureComponent } from 'react';
 import styled, { keyframes } from 'styled-components';
 
@@ -49,10 +50,10 @@ const SubLabel = styled.div`
 `;
 
 const mapKeyCodes = {
-  1: 49,
-  2: 50,
-  3: 51,
-  4: 52,
+  '1': 49,
+  '2': 50,
+  '3': 51,
+  '4': 52,
   q: 81,
   w: 87,
   e: 69,
@@ -75,7 +76,20 @@ const mapKeyCodes = {
   ';': 186,
 };
 
-export default class Keypad extends PureComponent {
+type KeypadProps = {
+  label: string,
+  subLabel: string,
+  soundPath: string,
+  colorOne: ?string,
+  colorTwo: ?string,
+  loop: ?boolean,
+};
+
+type KeypadState = {
+  animate: boolean,
+};
+
+export default class Keypad extends PureComponent<KeypadProps, KeypadState> {
   state = {
     animate: false,
   };
@@ -88,7 +102,7 @@ export default class Keypad extends PureComponent {
     window.removeEventListener('keydown', this.playSound);
   }
 
-  playSound = (e) => {
+  playSound = (e: ReactSyntheticEvent) => {
     const { label, soundPath } = this.props;
     if (e.keyCode === mapKeyCodes[label]) {
       // Start animation
@@ -100,7 +114,9 @@ export default class Keypad extends PureComponent {
       }, 500);
 
       const audio = document.getElementById(soundPath);
-      audio.play();
+      if (audio instanceof HTMLAudioElement) {
+        audio.play();
+      }
     }
   }
 
