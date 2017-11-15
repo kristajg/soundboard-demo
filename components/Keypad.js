@@ -80,9 +80,9 @@ type KeypadProps = {
   label: string,
   subLabel: string,
   soundPath: string,
-  colorOne: ?string,
-  colorTwo: ?string,
-  loop: ?boolean,
+  colorOne: string,
+  colorTwo: string,
+  loop: boolean,
 };
 
 type KeypadState = {

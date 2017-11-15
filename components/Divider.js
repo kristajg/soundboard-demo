@@ -23,11 +23,11 @@ const Line = styled.div`
   background-color: #676767;
 `;
 
-type Props = {
+type DividerProps = {
   label: string,
 };
 
-const Divider = ({ label }: Props) => (
+const Divider = ({ label }: DividerProps) => (
   <Container>
     <Label>{label}</Label>
     <Line />

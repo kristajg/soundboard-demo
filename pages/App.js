@@ -1,3 +1,4 @@
+// @flow
 import React, { PureComponent } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Keypad from '../components/Keypad';
@@ -167,14 +168,22 @@ const rowThree = [
   },
 ];
 
-export default class extends PureComponent {
+type AppState = {
+  volume: number,
+};
+
+export default class extends PureComponent<null, AppState> {
   state = {
     volume: 0.7,
   };
   
-  changeVolume = (e, value) => {
+  changeVolume = (e: ReactSyntheticEvent, value: number) => {
     const sounds = document.getElementsByClassName('sounds');
-    for (let i=0; i<sounds.length; i++) sounds[i].volume = value;
+    for (let i=0; i<sounds.length; i++) {
+      if (sounds[i] instanceof HTMLAudioElement) {
+        sounds[i].volume = value;
+      }
+    }
     this.setState({ volume: value });
   }
 
@@ -206,7 +215,8 @@ export default class extends PureComponent {
               subLabel={obj.subLabel}
               soundPath={obj.file}
               colorOne='#e79aff'
-              colorTwo='#9affe7' />
+              colorTwo='#9affe7'
+              loop={false} />
             )}
           </KeyboardRow>
           <Divider label='Lo-Fi Drums' />
@@ -217,7 +227,10 @@ export default class extends PureComponent {
               key={obj.label}
               label={obj.label}
               subLabel={obj.subLabel}
-              soundPath={obj.file} />
+              soundPath={obj.file}
+              colorOne=''
+              colorTwo=''
+              loop={false} />
             )}
           </KeyboardRow>
           <Divider label='Psycore Drums' />

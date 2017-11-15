@@ -1,3 +1,4 @@
+// @flow
 import React, { PureComponent } from 'react';
 import styled, { keyframes } from 'styled-components';
 
@@ -49,7 +50,11 @@ const SubLabel = styled.div`
   font-weight: 400;
 `;
 
-export default class Spacebar extends PureComponent {
+type SpacebarState = {
+  animate: boolean,
+};
+
+export default class Spacebar extends PureComponent<*, SpacebarState> {
   state = {
     animate: false,
   };
@@ -62,7 +67,7 @@ export default class Spacebar extends PureComponent {
     window.removeEventListener('keydown', this.stopAllSounds);
   }
 
-  stopAllSounds = (e) => {
+  stopAllSounds = (e: ReactSyntheticEvent) => {
     if (e.keyCode === 32) {
       // Start animation
       this.setState({ animate: true });
@@ -73,7 +78,11 @@ export default class Spacebar extends PureComponent {
       }, 500);
 
       const sounds = document.getElementsByClassName('sounds');
-      for (let i=0; i<sounds.length; i++) sounds[i].pause();
+      for (let i=0; i<sounds.length; i++) {
+        if (sounds[i] instanceof HTMLAudioElement) {
+          sounds[i].pause();
+        }
+      }
     }
   }
 

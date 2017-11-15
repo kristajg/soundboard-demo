@@ -1,3 +1,4 @@
+// @flow
 import React, { PureComponent } from 'react';
 import Slider from 'material-ui/Slider';
 import styled from 'styled-components';
@@ -12,7 +13,12 @@ const Label = styled.div`
   color: #676767;
 `;
 
-const Volume = ({ volume, changeVolume }) => (
+type VolumeProps = {
+  volume: number,
+  changeVolume: Function,
+}
+
+const Volume = ({ volume, changeVolume }: VolumeProps) => (
   <Container>
     <Slider
       style={{ width: '10%', marginLeft: '45%' }}
